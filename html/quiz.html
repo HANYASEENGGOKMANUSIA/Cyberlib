@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERLIB - Simulation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* --- 1. BACKGROUND FIX --- */
+        body {
+            background-image: url('../assets/bg2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+            color: #c5c6c7;
+            font-family: 'Segoe UI', sans-serif;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        /* --- 2. HEADER PROFILE FIX --- */
+        .profile-link {
+            margin-left: 20px;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .profile-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #1f2833;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #45a29e;
+            transition: 0.3s;
+        }
+        .profile-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
+            border-color: #66fcf1;
+        }
+
+        /* --- 3. QUIZ BOX --- */
+        .quiz-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(31, 40, 51, 0.95);
+            border: 2px solid #45a29e;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #45a29e;
+            padding-bottom: 15px;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: #66fcf1;
+        }
+
+        .question {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-opt {
+            background: #0b0c10;
+            border: 1px solid #45a29e;
+            color: #c5c6c7;
+            padding: 15px 20px;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .btn-opt:hover { background: #45a29e; color: #0b0c10; transform: translateX(10px); }
+
+        /* HASIL */
+        #result-screen { display: none; text-align: center; }
+        .score-display { font-size: 4rem; font-family: 'Press Start 2P'; color: #66fcf1; margin: 20px 0; }
+        
+        .btn-back {
+            background: #66fcf1;
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            font-family: 'Press Start 2P';
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="mainpage.html" class="logo-link">
+            <div class="logo-container">
+                <div class="logo-icon">C</div> 
+                <div class="logo-text">CYBERLIB</div>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="artic.html">Article</a></li>
+                <li><a href="course.html">Course</a></li>
+                <li><a href="quizpage.html" style="color: #66fcf1;">Quiz</a></li>
+                <li><a href="forumpage.html">Forum</a></li>
+            </ul>
+        </nav>
+        
+        <a href="profile.html" class="profile-link">
+            <div class="profile-icon"></div>
+        </a>
+    </header>
+
+    <div class="quiz-box">
+        
+        <div id="quiz-screen">
+            <div class="q-header">
+                <span id="q-category">MODULE: LOADING...</span>
+                <span id="q-number">1/5</span>
+            </div>
+            <div class="question" id="q-text">Mengambil data soal...</div>
+            <div class="options" id="opt-container">
+                </div>
+        </div>
+
+        <div id="result-screen">
+            <h2 style="color: #fff;">SIMULATION REPORT</h2>
+            <div class="score-display" id="final-score">0</div>
+            <p id="final-msg">CALCULATING...</p>
+            <p id="badge-msg" style="color: #f0a500; font-weight: bold; margin-top: 10px;"></p>
+            
+            <button class="btn-back" onclick="window.location.href='quizpage.html'">RETURN TO MENU</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-logo">CYBERLIB</div>
+    </footer>
+
+    <script>
+        // 1. Profil Icon
+        const savedPfp = localStorage.getItem('profilePhoto') || '../assets/pfp.jpg';
+        const profileIcon = document.querySelector('.profile-icon');
+        if(profileIcon) profileIcon.style.backgroundImage = `url('${savedPfp}')`;
+
+        // 2. LOGIC GAME (Fetch from JSON)
+        const urlParams = new URLSearchParams(window.location.search);
+        const quizId = urlParams.get('id'); 
+        
+        let currentQuiz = null;
+        let currentQIndex = 0;
+        let score = 0;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchQuizData();
+        });
+
+        async function fetchQuizData() {
+            try {
+                const response = await fetch('../data/quizdata.json');
+                if (!response.ok) throw new Error("Gagal mengambil data JSON");
+                
+                const allQuizzes = await response.json();
+                
+                // Cari quiz yang ID-nya cocok (loose equality untuk string vs int)
+                currentQuiz = allQuizzes.find(q => q.id == quizId);
+
+                if (currentQuiz) {
+                    document.getElementById('q-category').innerText = `MODULE: ${currentQuiz.title.toUpperCase()}`;
+                    loadQuestion();
+                } else {
+                    alert("Modul kuis tidak ditemukan!");
+                    window.location.href = "quizpage.html";
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('q-text').innerText = "Gagal memuat soal. Pastikan Anda menjalankan ini di Live Server.";
+                document.getElementById('q-text').style.color = "red";
+            }
+        }
+
+        function loadQuestion() {
+            const qData = currentQuiz.questions[currentQIndex];
+            
+            document.getElementById('q-number').innerText = `${currentQIndex + 1}/${currentQuiz.questions.length}`;
+            document.getElementById('q-text').innerText = qData.q;
+            
+            const optContainer = document.getElementById('opt-container');
+            optContainer.innerHTML = ''; 
+
+            qData.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-opt';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index);
+                optContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex) {
+            const correctIndex = currentQuiz.questions[currentQIndex].answer;
+            
+            if (selectedIndex === correctIndex) {
+                score++;
+            }
+
+            currentQIndex++;
+            if (currentQIndex < currentQuiz.questions.length) {
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+
+            const total = currentQuiz.questions.length;
+            const percentage = Math.round((score / total) * 100);
+            const passed = percentage >= 70;
+
+            document.getElementById('final-score').innerText = percentage;
+            
+            const msgEl = document.getElementById('final-msg');
+            const badgeEl = document.getElementById('badge-msg');
+
+            // SIMPAN DATA
+            const resultData = { score: score, total: total, passed: passed };
+            localStorage.setItem(`quiz_${quizId}`, JSON.stringify(resultData));
+
+            if (passed) {
+                msgEl.innerText = "MISSION SUCCESS";
+                msgEl.style.color = "#66fcf1";
+                badgeEl.innerText = `Badge Earned: ${currentQuiz.title}`;
+
+                let myBadges = JSON.parse(localStorage.getItem('completedQuizzes')) || [];
+                if (!myBadges.includes(currentQuiz.title)) {
+                    myBadges.push(currentQuiz.title);
+                    localStorage.setItem('completedQuizzes', JSON.stringify(myBadges));
+                }
+            } else {
+                msgEl.innerText = "MISSION FAILED";
+                msgEl.style.color = "#e74c3c";
+                badgeEl.innerText = "Min Score 70 to earn Badge";
+            }
+        }
+    </script>
+</body>
+</html>
