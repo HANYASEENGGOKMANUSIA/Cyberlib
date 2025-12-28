@@ -1,0 +1,139 @@
+[
+  {
+    "id": 1,
+    "title": "Keamanan Data & Privasi",
+    "questions": [
+      {
+        "q": "Data seperti NIK dan nomor HP termasuk…?",
+        "options": ["Data publik", "Data umum", "Data pribadi", "Data bebas"],
+        "answer": 2
+      },
+      {
+        "q": "Kebocoran data bisa menyebabkan…",
+        "options": ["Kecepatan internet naik", "Penyalahgunaan identitas", "Akun bertambah", "Sistem lebih aman"],
+        "answer": 1
+      },
+      {
+        "q": "Privasi digital penting untuk melindungi…",
+        "options": ["Perangkat", "Identitas pengguna", "Jaringan", "Aplikasi"],
+        "answer": 1
+      },
+      {
+        "q": "Memberikan data pribadi ke situs tidak dikenal itu…",
+        "options": ["Aman", "Wajar", "Berisiko", "Dianjurkan"],
+        "answer": 2
+      },
+      {
+        "q": "Yang bertanggung jawab menjaga data pribadi adalah…",
+        "options": ["Pemerintah saja", "Perusahaan saja", "Pengguna", "Teman"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Ancaman Siber",
+    "questions": [
+      {
+        "q": "Penipuan online yang menyamar jadi institusi resmi disebut…",
+        "options": ["Spam", "Phishing", "Hacking", "Browsing"],
+        "answer": 1
+      },
+      {
+        "q": "Malware yang mengunci data dan minta tebusan disebut…",
+        "options": ["Spyware", "Adware", "Ransomware", "Worm"],
+        "answer": 2
+      },
+      {
+        "q": "Tanda perangkat terkena virus adalah…",
+        "options": ["Baterai awet", "Kinerja lambat", "Internet cepat", "Suara jernih"],
+        "answer": 1
+      },
+      {
+        "q": "Cara menghindari ancaman siber adalah…",
+        "options": ["Klik semua link", "Pakai antivirus", "Matikan firewall", "Share password"],
+        "answer": 1
+      },
+      {
+        "q": "Password yang kuat sebaiknya mengandung…",
+        "options": ["Tanggal lahir", "Nama panggilan", "Kombinasi huruf, angka, simbol", "Urutan angka"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Jaringan & Akses Internet Aman",
+    "questions": [
+      {
+        "q": "Wi-Fi gratis di tempat umum disebut…",
+        "options": ["Wi-Fi rumah", "Wi-Fi publik", "Wi-Fi pribadi", "Wi-Fi aman"],
+        "answer": 1
+      },
+      {
+        "q": "Wi-Fi publik aman untuk internet banking?",
+        "options": ["Ya", "Selalu", "Tidak", "Bebas"],
+        "answer": 2
+      },
+      {
+        "q": "Alat untuk mengamankan koneksi internet disebut…",
+        "options": ["VPN", "GPS", "CCTV", "NFC"],
+        "answer": 0
+      },
+      {
+        "q": "HTTPS pada URL menandakan situs tersebut…",
+        "options": ["Lambat", "Tidak aman", "Terenskripsi/Aman", "Berbayar"],
+        "answer": 2
+      },
+      {
+        "q": "Mengapa Bluetooth harus dimatikan jika tidak dipakai?",
+        "options": ["Boros kuota", "Mencegah peretasan (Bluebugging)", "Merusak HP", "Mengganggu sinyal"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "id": "netsec",
+    "title": "Network Security",
+    "questions": [
+      { "q": "Port standar untuk protokol SSH adalah?", "options": ["Port 22", "Port 80", "Port 443", "Port 21"], "answer": 0 },
+      { "q": "Apa kepanjangan dari DDoS?", "options": ["Direct Denial of Service", "Distributed Denial of Service", "Domain Distribution System", "Data Denial System"], "answer": 1 },
+      { "q": "Tools yang digunakan untuk packet analyzing?", "options": ["Nmap", "Wireshark", "Metasploit", "Burp Suite"], "answer": 1 },
+      { "q": "Manakah yang merupakan IP Loopback?", "options": ["192.168.1.1", "127.0.0.1", "8.8.8.8", "10.0.0.1"], "answer": 1 },
+      { "q": "Protokol aman pengganti Telnet adalah?", "options": ["FTP", "HTTP", "SSH", "SMTP"], "answer": 2 }
+    ]
+  },
+  {
+    "id": "soceng",
+    "title": "Social Engineering",
+    "questions": [
+      { "q": "Teknik manipulasi psikologis disebut?", "options": ["Hacking", "Social Engineering", "Phishing", "Cracking"], "answer": 1 },
+      { "q": "Serangan email palsu yang menargetkan individu spesifik?", "options": ["Phishing", "Spear Phishing", "Vishing", "Smishing"], "answer": 1 },
+      { "q": "Mencari informasi dari sampah target disebut?", "options": ["Dumpster Diving", "Trash Hunting", "Bin Raiding", "Garbage Col"], "answer": 0 },
+      { "q": "Tailgating adalah?", "options": ["Membuntuti orang masuk pintu aman", "Mengirim ekor virus", "Menyadap kabel", "Mengunci akun"], "answer": 0 },
+      { "q": "Emosi apa yang sering dimanfaatkan penipu?", "options": ["Senang", "Takut & Urgensi", "Bosan", "Lapar"], "answer": 1 }
+    ]
+  },
+  {
+    "id": "webexp",
+    "title": "Web Exploitation",
+    "questions": [
+      { "q": "Apa itu SQL Injection?", "options": ["Menyuntikkan kode SQL ke input", "Install SQL Server", "Membuat Database", "Menghapus Tabel"], "answer": 0 },
+      { "q": "XSS adalah singkatan dari?", "options": ["XML Site Scripting", "Cross Site Scripting", "Extra Secure System", "Xenon Shell"], "answer": 1 },
+      { "q": "Apa fungsi Burp Suite?", "options": ["Edit Video", "Web Vulnerability Scanner", "Music Player", "Text Editor"], "answer": 1 },
+      { "q": "File apa yang mengatur indeksasi bot di web?", "options": ["index.html", "robots.txt", "style.css", "main.js"], "answer": 1 },
+      { "q": "Kode respons HTTP untuk 'Not Found'?", "options": ["200", "500", "404", "301"], "answer": 2 }
+    ]
+  },
+  {
+    "id": "linux",
+    "title": "Linux Basics",
+    "questions": [
+      { "q": "Perintah untuk melihat isi direktori?", "options": ["cd", "ls", "mkdir", "rm"], "answer": 1 },
+      { "q": "Perintah untuk mengubah izin file?", "options": ["chown", "chmod", "grep", "cat"], "answer": 1 },
+      { "q": "Siapa user tertinggi di Linux?", "options": ["Admin", "Root", "User", "Guest"], "answer": 1 },
+      { "q": "Distro Linux populer untuk Pentesting?", "options": ["Ubuntu", "Kali Linux", "Mint", "Fedora"], "answer": 1 },
+      { "q": "Perintah untuk menampilkan manual command?", "options": ["help", "man", "info", "doc"], "answer": 1 }
+    ]
+  }
+]
